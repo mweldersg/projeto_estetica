@@ -2,11 +2,6 @@ import { NextRequest } from 'next/server'
 import { requireAdmin } from '@/lib/auth'
 import { requireDriveEnv, uploadMedia } from '@/lib/drive'
 
-export const config = {
-  api: {
-    bodySizeLimit: '100mb',
-  },
-}
 
 export async function POST(request: NextRequest) {
   if (!(await requireAdmin(request))) {
