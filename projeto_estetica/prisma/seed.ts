@@ -2,7 +2,7 @@ import 'dotenv/config'
 import { PrismaClient } from '@prisma/client'
 import { PrismaPg } from '@prisma/adapter-pg'
 import bcrypt from 'bcryptjs'
-import { services, videos, reviews } from '../src/lib/mock-data'
+import adminData from '../current-data.json'
 import { formatInstagramEmbedUrl } from '../src/lib/instagram'
 
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL })
@@ -12,7 +12,7 @@ const ADMIN_PHONE = process.env.ADMIN_PHONE || '19998740950'
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'password'
 
 async function main() {
-  console.log('Seeding database...')
+  console.log('Seeding database with current data...')
   const hashedPassword = await bcrypt.hash(ADMIN_PASSWORD, 10)
 
   await prisma.admin.upsert({
@@ -21,7 +21,8 @@ async function main() {
     create: { phone: ADMIN_PHONE, password: hashedPassword },
   })
 
-  for (const [index, service] of services.entries()) {
+  console.log('Creating/updating services...')
+  for (const [index, service] of adminData.services.entries()) {
     await prisma.service.upsert({
       where: { id: service.id },
       create: { ...service, order: index },
@@ -35,16 +36,17 @@ async function main() {
     })
   }
 
-  for (const [index, video] of videos.entries()) {
-    const instagramUrl = formatInstagramEmbedUrl(video.instagramUrl)
+  console.log('Creating/updating videos...')
+  for (const [index, video] of adminData.videos.entries()) {
     await prisma.video.upsert({
       where: { id: video.id },
-      create: { id: video.id, title: video.title, instagramUrl, order: index },
-      update: { title: video.title, instagramUrl, order: index },
+      create: { ...video, order: index },
+      update: { title: video.title, instagramUrl: video.instagramUrl, order: index },
     })
   }
 
-  for (const [index, review] of reviews.entries()) {
+  console.log('Creating/updating reviews...')
+  for (const [index, review] of adminData.reviews.entries()) {
     await prisma.review.upsert({
       where: { id: review.id },
       create: { ...review, order: index },
@@ -52,13 +54,12 @@ async function main() {
         name: review.name,
         rating: review.rating,
         text: review.text,
-        image: review.image ?? null,
         order: index,
       },
     })
   }
 
-  console.log('Seed complete')
+  console.log('Seed complete - database synchronized with current state!')
 }
 
 main()

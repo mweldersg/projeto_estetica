@@ -1,19 +1,17 @@
 'use client'
 
 import { useState } from 'react'
-import { apiUpload } from '@/lib/api'
 
 export type Item = Record<string, unknown>
 
 export interface FieldConfig {
   key: string
   label: string
-  type?: 'text' | 'textarea' | 'select' | 'file'
+  type?: 'text' | 'textarea' | 'select'
   options?: string[]
   placeholder?: string
   required?: boolean
   optional?: boolean
-  accept?: string
 }
 
 interface Props {
@@ -43,7 +41,6 @@ export default function ContentManager({
   const [isNew, setIsNew] = useState(false)
   const [error, setError] = useState('')
   const [saving, setSaving] = useState(false)
-  const [uploadingKey, setUploadingKey] = useState<string | null>(null)
   const [deleteTarget, setDeleteTarget] = useState<Item | null>(null)
   const [deleting, setDeleting] = useState(false)
   const [deleteError, setDeleteError] = useState('')
@@ -72,20 +69,6 @@ export default function ContentManager({
     }
   }
 
-  async function handleFile(field: FieldConfig, file: File) {
-    setUploadingKey(field.key)
-    setError('')
-    try {
-      const currentUrl = draft ? String(draft[field.key] ?? '') : ''
-      const { url } = await apiUpload(file, currentUrl || undefined)
-      setDraft((d) => (d ? { ...d, [field.key]: url } : d))
-    } catch {
-      setError(`Falha no upload de "${field.label}". Tente novamente.`)
-    } finally {
-      setUploadingKey(null)
-    }
-  }
-
   function openCreate() {
     setDraft(createEmpty())
     setIsNew(true)
@@ -103,23 +86,14 @@ export default function ContentManager({
     setError('')
   }
 
-  const isUploading = uploadingKey !== null
-  const requiredUploadMissing = isNew
-    ? fields.some(
-        (field) =>
-          field.type === 'file' &&
-          field.required &&
-          !String(draft?.[field.key] ?? '').trim(),
-      )
-    : false
-  const canSubmit = !saving && !isUploading && !requiredUploadMissing
+  const canSubmit = !saving
 
   async function save() {
     if (!draft) return
 
     for (const field of fields) {
       if (field.required && !String(draft[field.key]).trim()) {
-        setError(`Preencha o campo "${field.label}"`)
+        setError(`Preencha o campo \"${field.label}\"`)
         return
       }
     }
@@ -219,25 +193,6 @@ export default function ContentManager({
                         <option key={option} value={option}>{option}</option>
                       ))}
                     </select>
-                  ) : field.type === 'file' ? (
-                    <div>
-                      <input
-                        id={field.key}
-                        type="file"
-                        accept={field.accept}
-                        disabled={uploadingKey === field.key}
-                        onChange={(e) => {
-                          const file = e.target.files?.[0]
-                          if (file) handleFile(field, file)
-                        }}
-                        className="w-full text-sm text-garage-muted file:mr-4 file:px-4 file:py-2 file:rounded-lg file:border file:border-garage-border file:bg-garage-dark file:text-garage-text file:cursor-pointer hover:file:border-garage-gold transition-colors"
-                      />
-                      {uploadingKey === field.key ? (
-                        <p className="text-sm text-garage-gold mt-1.5">Enviando arquivo...</p>
-                      ) : String(draft[field.key] ?? '').trim() ? (
-                        <p className="text-sm text-garage-muted mt-1.5 truncate">Arquivo enviado</p>
-                      ) : null}
-                    </div>
                   ) : (
                     <input
                       id={field.key}
@@ -266,17 +221,11 @@ export default function ContentManager({
                   type="button"
                   onClick={save}
                   disabled={!canSubmit}
-                  title={requiredUploadMissing ? 'Envie o arquivo para habilitar' : undefined}
                   className="flex-1 py-3 bg-garage-gold text-black font-semibold rounded-lg hover:bg-garage-gold-hover transition-colors disabled:opacity-50 disabled:hover:bg-garage-gold disabled:cursor-not-allowed"
                 >
                   {saving ? 'Salvando...' : isNew ? 'Criar' : 'Salvar'}
                 </button>
               </div>
-              {requiredUploadMissing && (
-                <p className="text-sm text-garage-muted">
-                  Envie o arquivo para habilitar.
-                </p>
-              )}
             </div>
           </div>
         </div>
@@ -296,7 +245,7 @@ export default function ContentManager({
               {renderSummary(deleteTarget)}
             </div>
             <p className="mb-4 text-sm text-garage-muted">
-              Esta ação não pode ser desfeita. O arquivo no Google Drive também será removido.
+              Esta ação não pode ser desfeita.
             </p>
             {deleteError && <p className="mb-4 text-sm text-red-400">{deleteError}</p>}
             <div className="flex gap-3">

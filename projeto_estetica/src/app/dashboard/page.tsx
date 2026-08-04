@@ -124,19 +124,13 @@ export default function DashboardPage() {
             fields={[
               { key: 'title', label: 'Título', required: true },
               { key: 'description', label: 'Descrição', type: 'textarea', required: true },
-              { key: 'image', label: 'Imagem', type: 'file', accept: 'image/*', required: true },
               { key: 'value', label: 'Valor (usado no agendamento)', required: true },
             ]}
             items={serviceItems}
             onAdd={(item) => apiCreateItem('services', item).then(refresh)}
             onUpdate={(item) => apiUpdateItem('services', String(item.id), item).then(refresh)}
             onDelete={(id) => apiDeleteItem('services', id).then(refresh)}
-            createEmpty={() => ({ id: crypto.randomUUID(), title: '', description: '', image: '', value: '' })}
-            renderPreview={(item) => (
-              <div className="w-20 h-14 rounded overflow-hidden shrink-0">
-                <img src={String(item.image)} alt="" className="w-full h-full object-cover" />
-              </div>
-            )}
+            createEmpty={() => ({ id: crypto.randomUUID(), title: '', description: '', value: '' })}
             renderSummary={(item) => (
               <div>
                 <p className="font-semibold truncate">{String(item.title)}</p>
@@ -185,20 +179,12 @@ export default function DashboardPage() {
                 required: true,
               },
               { key: 'text', label: 'Texto do Depoimento', type: 'textarea', required: true },
-              { key: 'image', label: 'Foto do Cliente (opcional)', type: 'file', accept: 'image/*' },
             ]}
             items={reviewItems}
             onAdd={(item) => apiCreateItem('reviews', item).then(refresh)}
             onUpdate={(item) => apiUpdateItem('reviews', String(item.id), item).then(refresh)}
             onDelete={(id) => apiDeleteItem('reviews', id).then(refresh)}
-            createEmpty={() => ({ id: crypto.randomUUID(), name: '', rating: 5, text: '', image: '' })}
-            renderPreview={(item) =>
-              item.image ? (
-                <div className="w-10 h-10 rounded-full overflow-hidden shrink-0">
-                  <img src={String(item.image)} alt="" className="w-full h-full object-cover" />
-                </div>
-              ) : null
-            }
+            createEmpty={() => ({ id: crypto.randomUUID(), name: '', rating: 5, text: '' })}
             renderSummary={(item) => (
               <div>
                 <p className="font-semibold truncate">

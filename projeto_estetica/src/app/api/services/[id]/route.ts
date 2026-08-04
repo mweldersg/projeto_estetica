@@ -1,7 +1,6 @@
 import { NextRequest } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { requireAdmin } from '@/lib/auth'
-import { deleteMediaByUrl } from '@/lib/drive'
 
 export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   if (!(await requireAdmin(request))) {
@@ -30,9 +29,7 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
   const { id } = await params
 
   try {
-    const item = await prisma.service.findUniqueOrThrow({ where: { id } })
     await prisma.service.delete({ where: { id } })
-    await deleteMediaByUrl(item.image)
     return Response.json({ success: true })
   } catch {
     return Response.json({ success: false, error: 'Not found' }, { status: 404 })

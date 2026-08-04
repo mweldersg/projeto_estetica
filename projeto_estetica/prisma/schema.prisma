@@ -33,6 +33,5 @@ model Review {
   name   String
   rating Int
   text   String
-  image  String?
   order  Int     @default(0)
 }

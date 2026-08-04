@@ -17,7 +17,6 @@ export type Review = {
   name: string
   rating: number
   text: string
-  image?: string | null
 }
 
 export const INSTAGRAM_URL = process.env.NEXT_PUBLIC_INSTAGRAM_URL || 'https://instagram.com/garage765sp'
@@ -26,7 +25,7 @@ export const instagram = {
   handle: 'garage765sp',
   followers: '8.880 mil',
   posts: '475',
-  avatar: 'https://lh3.googleusercontent.com/d/1F7B12GjN3Yizy7Mt9cRtUT9KlK8MMUf5',
+  avatar: '/images/avatar.png',
   gallery: [
     'https://lh3.googleusercontent.com/d/1uDzsfc_C5-1a5NOUHRNAw0u7DqNIc-bV',
     'https://lh3.googleusercontent.com/d/1-WOdOkIAKKqTM_iefWZHBEBdRxlT1hIT',

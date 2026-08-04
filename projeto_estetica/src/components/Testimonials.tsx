@@ -25,17 +25,9 @@ export default function Testimonials({ reviews }: Props) {
                 className="bg-garage-card p-6 rounded-lg border border-garage-border flex flex-col"
               >
                 <div className="flex items-center justify-between mb-4">
-                  {review.image ? (
-                    <img
-                      src={review.image}
-                      alt={review.name}
-                      className="w-10 h-10 rounded-full object-cover"
-                    />
-                  ) : (
-                    <span className="w-10 h-10 rounded-full bg-garage-gold text-black font-bold flex items-center justify-center">
-                      {review.name.charAt(0)}
-                    </span>
-                  )}
+                  <span className="w-10 h-10 rounded-full bg-garage-gold text-black font-bold flex items-center justify-center">
+                    {review.name.charAt(0)}
+                  </span>
                   <span className="flex gap-0.5">
                     {Array.from({ length: review.rating }).map((_, i) => (
                       <svg key={i} className="w-4 h-4 text-garage-gold" fill="currentColor" viewBox="0 0 20 20">
@@ -44,12 +36,23 @@ export default function Testimonials({ reviews }: Props) {
                     ))}
                   </span>
                 </div>
-                <p className="text-garage-muted flex-1 mb-5">“{review.text}”</p>
+                <p className="text-garage-muted flex-1 mb-5">"{review.text}"</p>
                 <p className="font-semibold">{review.name}</p>
               </div>
             ))}
           </div>
         )}
+
+        <div className="mt-12 text-center">
+          <a
+            href="https://www.google.com/maps/place/Garage+765sp+-+Est%C3%A9tica+Automotiva+-+Sumar%C3%A9-SP/@-22.8059714,-47.2024581,17z/data=!4m6!3m5!1s0x94c8bfd7f9d9f47d:0x7a257308d80d7813!8m2!3d-22.8059714!4d-47.1998832!16s%2Fg%2F11js_zs_0p?entry=ttu&g_ep=EgoyMDI2MDcyOS4wIKXMDSoASAFQAw%3D%3D#:~:text=21-,avalia%C3%A7%C3%B5es,-%22Foi%20incr%C3%ADvel%20o"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center px-8 py-4 bg-garage-gold hover:bg-garage-gold-hover text-black font-semibold rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
+          >
+            Confira todas as avaliações do nosso serviço 5.0 estrelas no Google!
+          </a>
+        </div>
       </div>
     </section>
   )
