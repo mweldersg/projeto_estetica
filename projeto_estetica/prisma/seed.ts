@@ -2,7 +2,8 @@ import 'dotenv/config'
 import { PrismaClient } from '@prisma/client'
 import { PrismaPg } from '@prisma/adapter-pg'
 import bcrypt from 'bcryptjs'
-import adminData from '../current-data.json'
+import fs from 'fs'
+import path from 'path'
 import { formatInstagramEmbedUrl } from '../src/lib/instagram'
 
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL })
@@ -13,6 +14,19 @@ const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'password'
 
 async function main() {
   console.log('Seeding database with current data...')
+
+  // Lê o current-data.json de forma segura (se não existir, usa arrays vazios)
+  let adminData = { services: [], videos: [], reviews: [] }
+  const jsonPath = path.join(__dirname, '../current-data.json')
+  
+  if (fs.existsSync(jsonPath)) {
+    const fileContent = fs.readFileSync(jsonPath, 'utf-8')
+    adminData = JSON.parse(fileContent)
+    console.log('Loaded data from current-data.json successfully.')
+  } else {
+    console.log('current-data.json not found, skipping data arrays seed.')
+  }
+
   const hashedPassword = await bcrypt.hash(ADMIN_PASSWORD, 10)
 
   await prisma.admin.upsert({
