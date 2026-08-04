@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Admin {
+  id       String @id @default(cuid())
+  phone    String @unique
+  password String
+}
+
+model Service {
+  id          String @id @default(cuid())
+  title       String
+  description String
+  image       String
+  value       String
+  order       Int    @default(0)
+}
+
+model Video {
+  id           String @id @default(cuid())
+  title        String
+  instagramUrl String
+  order        Int    @default(0)
+}
+
+model Review {
+  id     String  @id @default(cuid())
+  name   String
+  rating Int
+  text   String
+  image  String?
+  order  Int     @default(0)
+}
