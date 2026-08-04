@@ -17,7 +17,7 @@ async function main() {
 
   // Lê o current-data.json de forma segura com tipagem explícita
   let adminData: {
-    services: Array<{ id: string; title: string; description: string; image: string; value: number }>
+    services: Array<{ id: string; title: string; description: string; image: string; value: any }>
     videos: Array<{ id: string; title: string; instagramUrl: string }>
     reviews: Array<{ id: string; name: string; rating: number; text: string }>
   } = { services: [], videos: [], reviews: [] }
