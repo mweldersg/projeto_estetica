@@ -31,7 +31,7 @@ export default function BookingForm({ initialService, services }: Props) {
     <section id="booking" className="py-20 bg-garage-dark border-t border-garage-border">
       <div className="max-w-2xl mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
-          <span className="text-garage-gold">Agende aqui!</span>
+          <span className="text-garage-red">Agende aqui!</span>
         </h2>
         <p className="text-garage-muted text-center mb-10 text-lg">
           Preencha os dados abaixo e finalize o pedido pelo WhatsApp.
@@ -48,7 +48,7 @@ export default function BookingForm({ initialService, services }: Props) {
                 onChange={(e) => setName(e.target.value)}
                 placeholder="ex. João Silva"
                 required
-                className="w-full px-4 py-3 bg-garage-dark border border-garage-border rounded-lg text-garage-text placeholder:text-garage-muted/50 focus:outline-none focus:border-garage-gold transition-colors"
+                className="w-full px-4 py-3 bg-garage-dark border border-garage-border rounded-lg text-garage-text placeholder:text-garage-muted/50 focus:outline-none focus:border-garage-red transition-colors"
               />
             </div>
 
@@ -62,7 +62,7 @@ export default function BookingForm({ initialService, services }: Props) {
                   onChange={(e) => setVehicle(e.target.value)}
                   placeholder="ex. BMW 320i 2024"
                   required
-                  className="w-full px-4 py-3 bg-garage-dark border border-garage-border rounded-lg text-garage-text placeholder:text-garage-muted/50 focus:outline-none focus:border-garage-gold transition-colors"
+                  className="w-full px-4 py-3 bg-garage-dark border border-garage-border rounded-lg text-garage-text placeholder:text-garage-muted/50 focus:outline-none focus:border-garage-red transition-colors"
                 />
               </div>
               <div>
@@ -72,7 +72,7 @@ export default function BookingForm({ initialService, services }: Props) {
                   value={service}
                   onChange={(e) => setService(e.target.value)}
                   required
-                  className="w-full px-4 py-3 bg-garage-dark border border-garage-border rounded-lg text-garage-text focus:outline-none focus:border-garage-gold transition-colors"
+                  className="w-full px-4 py-3 bg-garage-dark border border-garage-border rounded-lg text-garage-text focus:outline-none focus:border-garage-red transition-colors"
                 >
                   <option value="">Selecione um serviço...</option>
                   {services.map((s) => (
@@ -91,7 +91,7 @@ export default function BookingForm({ initialService, services }: Props) {
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
                   required
-                  className="w-full px-4 py-3 bg-garage-dark border border-garage-border rounded-lg text-garage-text focus:outline-none focus:border-garage-gold transition-colors"
+                  className="w-full px-4 py-3 bg-garage-dark border border-garage-border rounded-lg text-garage-text focus:outline-none focus:border-garage-red transition-colors"
                 />
               </div>
               <div>
@@ -102,14 +102,14 @@ export default function BookingForm({ initialService, services }: Props) {
                   value={time}
                   onChange={(e) => setTime(e.target.value)}
                   required
-                  className="w-full px-4 py-3 bg-garage-dark border border-garage-border rounded-lg text-garage-text focus:outline-none focus:border-garage-gold transition-colors"
+                  className="w-full px-4 py-3 bg-garage-dark border border-garage-border rounded-lg text-garage-text focus:outline-none focus:border-garage-red transition-colors"
                 />
               </div>
             </div>
 
             <button
               type="submit"
-              className="w-full py-4 bg-garage-gold text-black font-bold uppercase rounded hover:bg-garage-gold-hover transition-colors text-lg"
+              className="w-full py-4 bg-garage-red text-black font-bold uppercase rounded hover:bg-garage-red-hover transition-colors text-lg"
             >
               Agendar via WhatsApp
             </button>

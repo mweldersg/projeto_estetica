@@ -76,7 +76,7 @@ export default function ChangePasswordForm({ onClose }: Props) {
                 onChange={(e) => setOldPassword(e.target.value)}
                 placeholder="••••••••"
                 required
-                className="w-full px-4 py-3 bg-garage-dark border border-garage-border rounded-lg text-garage-text placeholder:text-garage-muted/50 focus:outline-none focus:border-garage-gold transition-colors"
+                className="w-full px-4 py-3 bg-garage-dark border border-garage-border rounded-lg text-garage-text placeholder:text-garage-muted/50 focus:outline-none focus:border-garage-red transition-colors"
               />
             </div>
 
@@ -88,7 +88,7 @@ export default function ChangePasswordForm({ onClose }: Props) {
                 onChange={(e) => setNewPassword(e.target.value)}
                 placeholder="Mínimo de 6 caracteres"
                 required
-                className="w-full px-4 py-3 bg-garage-dark border border-garage-border rounded-lg text-garage-text placeholder:text-garage-muted/50 focus:outline-none focus:border-garage-gold transition-colors"
+                className="w-full px-4 py-3 bg-garage-dark border border-garage-border rounded-lg text-garage-text placeholder:text-garage-muted/50 focus:outline-none focus:border-garage-red transition-colors"
               />
             </div>
 
@@ -100,7 +100,7 @@ export default function ChangePasswordForm({ onClose }: Props) {
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder="Repita a nova senha"
                 required
-                className="w-full px-4 py-3 bg-garage-dark border border-garage-border rounded-lg text-garage-text placeholder:text-garage-muted/50 focus:outline-none focus:border-garage-gold transition-colors"
+                className="w-full px-4 py-3 bg-garage-dark border border-garage-border rounded-lg text-garage-text placeholder:text-garage-muted/50 focus:outline-none focus:border-garage-red transition-colors"
               />
             </div>
 
@@ -110,14 +110,14 @@ export default function ChangePasswordForm({ onClose }: Props) {
               <button
                 type="button"
                 onClick={onClose}
-                className="flex-1 py-3 border border-garage-border rounded-lg text-garage-muted hover:text-garage-text hover:border-garage-gold transition-colors"
+                className="flex-1 py-3 border border-garage-border rounded-lg text-garage-muted hover:text-garage-text hover:border-garage-red transition-colors"
               >
                 Cancelar
               </button>
               <button
                 type="submit"
                 disabled={loading}
-                className="flex-1 py-3 bg-garage-gold text-black font-semibold rounded-lg hover:bg-garage-gold-hover transition-colors disabled:opacity-50"
+                className="flex-1 py-3 bg-garage-red text-black font-semibold rounded-lg hover:bg-garage-red-hover transition-colors disabled:opacity-50"
               >
                 {loading ? 'Alterando...' : 'Alterar Senha'}
               </button>

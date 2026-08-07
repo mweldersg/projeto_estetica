@@ -35,3 +35,10 @@ model Review {
   text   String
   order  Int     @default(0)
 }
+
+model Faq {
+  id       String @id @default(cuid())
+  question String
+  answer   String
+  order    Int    @default(0)
+}

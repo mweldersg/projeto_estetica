@@ -43,7 +43,7 @@ function LoginForm() {
       <div className="w-full max-w-md">
         <div className="text-center mb-10">
           <Link href="/" className="text-3xl font-bold tracking-tight">
-            Garage <span className="text-garage-gold">765</span>
+            Garage <span className="text-garage-red">765</span>
           </Link>
           <p className="text-garage-muted mt-2">Área do Administrador</p>
         </div>
@@ -63,7 +63,7 @@ function LoginForm() {
                 }}
                 placeholder="(11) 99999-9999"
                 required
-                className="w-full px-4 py-3 bg-garage-dark border border-garage-border rounded-lg text-garage-text placeholder:text-garage-muted/50 focus:outline-none focus:border-garage-gold transition-colors"
+                className="w-full px-4 py-3 bg-garage-dark border border-garage-border rounded-lg text-garage-text placeholder:text-garage-muted/50 focus:outline-none focus:border-garage-red transition-colors"
               />
             </div>
 
@@ -77,7 +77,7 @@ function LoginForm() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
                 required
-                className="w-full px-4 py-3 bg-garage-dark border border-garage-border rounded-lg text-garage-text placeholder:text-garage-muted/50 focus:outline-none focus:border-garage-gold transition-colors"
+                className="w-full px-4 py-3 bg-garage-dark border border-garage-border rounded-lg text-garage-text placeholder:text-garage-muted/50 focus:outline-none focus:border-garage-red transition-colors"
               />
             </div>
 
@@ -88,7 +88,7 @@ function LoginForm() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 bg-garage-gold text-black font-semibold rounded-lg hover:bg-garage-gold-hover transition-colors disabled:opacity-50"
+              className="w-full py-3 bg-garage-red text-black font-semibold rounded-lg hover:bg-garage-red-hover transition-colors disabled:opacity-50"
             >
               {loading ? 'Entrando...' : 'Entrar'}
             </button>

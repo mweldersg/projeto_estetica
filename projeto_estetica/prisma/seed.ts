@@ -3,7 +3,6 @@ import { PrismaClient } from '@prisma/client'
 import { PrismaPg } from '@prisma/adapter-pg'
 import bcrypt from 'bcryptjs'
 import adminData from '../current-data.json'
-import { formatInstagramEmbedUrl } from '../src/lib/instagram'
 
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL })
 const prisma = new PrismaClient({ adapter })
@@ -54,6 +53,19 @@ async function main() {
         name: review.name,
         rating: review.rating,
         text: review.text,
+        order: index,
+      },
+    })
+  }
+
+  console.log('Creating/updating faqs...')
+  for (const [index, faq] of adminData.faqs.entries()) {
+    await prisma.faq.upsert({
+      where: { id: faq.id },
+      create: { ...faq, order: index },
+      update: {
+        question: faq.question,
+        answer: faq.answer,
         order: index,
       },
     })

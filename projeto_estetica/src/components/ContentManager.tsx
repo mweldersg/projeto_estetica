@@ -119,7 +119,7 @@ export default function ContentManager({
         <h3 className="text-xl font-bold">{title}</h3>
         <button
           onClick={openCreate}
-          className="px-5 py-2.5 bg-garage-gold text-black font-semibold rounded-lg hover:bg-garage-gold-hover transition-colors text-sm"
+          className="px-5 py-2.5 bg-garage-red text-black font-semibold rounded-lg hover:bg-garage-red-hover transition-colors text-sm"
         >
           Adicionar
         </button>
@@ -141,7 +141,7 @@ export default function ContentManager({
               <div className="flex items-center gap-2 shrink-0">
                 <button
                   onClick={() => openEdit(item)}
-                  className="px-3 py-1.5 text-sm border border-garage-border rounded-md text-garage-muted hover:text-garage-text hover:border-garage-gold transition-colors"
+                  className="px-3 py-1.5 text-sm border border-garage-border rounded-md text-garage-muted hover:text-garage-text hover:border-garage-red transition-colors"
                 >
                   Editar
                 </button>
@@ -180,14 +180,14 @@ export default function ContentManager({
                       onChange={(e) => setDraft({ ...draft, [field.key]: e.target.value })}
                       placeholder={field.placeholder}
                       rows={3}
-                      className="w-full px-4 py-3 bg-garage-dark border border-garage-border rounded-lg text-garage-text placeholder:text-garage-muted/50 focus:outline-none focus:border-garage-gold transition-colors"
+                      className="w-full px-4 py-3 bg-garage-dark border border-garage-border rounded-lg text-garage-text placeholder:text-garage-muted/50 focus:outline-none focus:border-garage-red transition-colors"
                     />
                   ) : field.type === 'select' ? (
                     <select
                       id={field.key}
                       value={String(draft[field.key] ?? '')}
                       onChange={(e) => setDraft({ ...draft, [field.key]: e.target.value })}
-                      className="w-full px-4 py-3 bg-garage-dark border border-garage-border rounded-lg text-garage-text focus:outline-none focus:border-garage-gold transition-colors"
+                      className="w-full px-4 py-3 bg-garage-dark border border-garage-border rounded-lg text-garage-text focus:outline-none focus:border-garage-red transition-colors"
                     >
                       {(field.options || []).map((option) => (
                         <option key={option} value={option}>{option}</option>
@@ -200,7 +200,7 @@ export default function ContentManager({
                       value={String(draft[field.key] ?? '')}
                       onChange={(e) => setDraft({ ...draft, [field.key]: e.target.value })}
                       placeholder={field.placeholder}
-                      className="w-full px-4 py-3 bg-garage-dark border border-garage-border rounded-lg text-garage-text placeholder:text-garage-muted/50 focus:outline-none focus:border-garage-gold transition-colors"
+                      className="w-full px-4 py-3 bg-garage-dark border border-garage-border rounded-lg text-garage-text placeholder:text-garage-muted/50 focus:outline-none focus:border-garage-red transition-colors"
                     />
                   )}
                 </div>
@@ -213,7 +213,7 @@ export default function ContentManager({
                   type="button"
                   onClick={close}
                   disabled={saving}
-                  className="flex-1 py-3 border border-garage-border rounded-lg text-garage-muted hover:text-garage-text hover:border-garage-gold transition-colors disabled:opacity-50"
+                  className="flex-1 py-3 border border-garage-border rounded-lg text-garage-muted hover:text-garage-text hover:border-garage-red transition-colors disabled:opacity-50"
                 >
                   Cancelar
                 </button>
@@ -221,7 +221,7 @@ export default function ContentManager({
                   type="button"
                   onClick={save}
                   disabled={!canSubmit}
-                  className="flex-1 py-3 bg-garage-gold text-black font-semibold rounded-lg hover:bg-garage-gold-hover transition-colors disabled:opacity-50 disabled:hover:bg-garage-gold disabled:cursor-not-allowed"
+                  className="flex-1 py-3 bg-garage-red text-black font-semibold rounded-lg hover:bg-garage-red-hover transition-colors disabled:opacity-50 disabled:hover:bg-garage-red disabled:cursor-not-allowed"
                 >
                   {saving ? 'Salvando...' : isNew ? 'Criar' : 'Salvar'}
                 </button>
@@ -253,7 +253,7 @@ export default function ContentManager({
                 type="button"
                 onClick={closeDelete}
                 disabled={deleting}
-                className="flex-1 py-3 rounded-lg border border-garage-border text-garage-muted hover:text-garage-text hover:border-garage-gold transition-colors disabled:opacity-50"
+                className="flex-1 py-3 rounded-lg border border-garage-border text-garage-muted hover:text-garage-text hover:border-garage-red transition-colors disabled:opacity-50"
               >
                 Cancelar
               </button>

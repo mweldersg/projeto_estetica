@@ -19,6 +19,12 @@ export type Review = {
   text: string
 }
 
+export type Faq = {
+  id: string
+  question: string
+  answer: string
+}
+
 export const INSTAGRAM_URL = process.env.NEXT_PUBLIC_INSTAGRAM_URL || 'https://instagram.com/garage765sp'
 
 export const instagram = {

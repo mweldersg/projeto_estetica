@@ -1,5 +1,5 @@
 export function formatInstagramEmbedUrl(rawUrl: string): string {
-  let processed = rawUrl.trim()
+  const processed = rawUrl.trim()
     .split('?')[0]
     .replace(/\/+$/, '')
     .replace(/\/reel\//, '/p/')

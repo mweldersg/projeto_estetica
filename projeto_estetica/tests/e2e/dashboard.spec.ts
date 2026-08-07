@@ -72,11 +72,23 @@ test.describe('Content Manager', () => {
     await expect(row).toHaveCount(0)
   })
 
-  test('creating a service is blocked until the required image is uploaded', async ({ page }) => {
+  test('creating a service requires all required fields', async ({ page }) => {
     await loginAsAdmin(page)
     await page.getByRole('button', { name: 'Adicionar' }).click()
 
-    await expect(page.getByRole('button', { name: 'Criar' })).toBeDisabled()
-    await expect(page.locator('text=Envie o arquivo para habilitar.')).toBeVisible()
+    await page.getByRole('button', { name: 'Criar' }).click()
+    await expect(page.locator('text=Preencha o campo "Título"')).toBeVisible()
+  })
+
+  test('admin can add a FAQ', async ({ page }) => {
+    await loginAsAdmin(page)
+    await page.getByRole('tab', { name: 'Perguntas Frequentes' }).click()
+
+    await page.getByRole('button', { name: 'Adicionar' }).click()
+    await page.getByLabel('Pergunta').fill('Qual o horário de funcionamento?')
+    await page.getByLabel('Resposta').fill('De segunda a sábado, das 8h às 18h.')
+    await page.getByRole('button', { name: 'Criar' }).click()
+
+    await expect(page.locator('text=Qual o horário de funcionamento?')).toBeVisible()
   })
 })

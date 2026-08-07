@@ -17,7 +17,7 @@ export default function FinalCTA({ onBookClick }: Props) {
       />
       <div className="relative z-10 max-w-3xl mx-auto px-4 text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-5">
-          Pronto para ver seu carro novo <span className='text-garage-gold'> de novo</span>?
+          Pronto para ver seu carro novo <span className='text-garage-red'> de novo</span>?
         </h2>
         <p className="text-lg text-gray-300 mb-8">
           Nossa agenda deste mês está quase lotada. Garanta seu lugar e transforme seu veículo.
@@ -25,7 +25,7 @@ export default function FinalCTA({ onBookClick }: Props) {
         <Link
           href="#booking"
           onClick={onBookClick}
-          className="inline-flex items-center gap-2 px-8 py-4 bg-garage-gold text-black font-bold uppercase rounded hover:bg-garage-gold-hover transition-all text-lg"
+          className="inline-flex items-center gap-2 px-8 py-4 bg-garage-red text-black font-bold uppercase rounded hover:bg-garage-red-hover transition-all text-lg"
         >
           Agendar Avaliação Agora
         </Link>
