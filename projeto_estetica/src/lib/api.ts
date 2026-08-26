@@ -33,15 +33,6 @@ export async function apiChangePassword(oldPassword: string, newPassword: string
   return res.json()
 }
 
-export async function apiUpload(file: File, existingUrl?: string): Promise<{ url: string; fileId: string }> {
-  const form = new FormData()
-  form.append('file', file)
-  if (existingUrl) form.append('existingUrl', existingUrl)
-  const res = await fetch('/api/upload', { method: 'POST', body: form })
-  if (!res.ok) throw new Error('Falha no upload')
-  return res.json()
-}
-
 export async function apiGetItems<T>(resource: string): Promise<T[]> {
   const res = await fetch(`/api/${resource}`)
   if (!res.ok) throw new Error('Falha ao carregar')

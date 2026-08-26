@@ -30,7 +30,7 @@ export default function VideoCarousel({ videos }: Props) {
         <button
           onClick={prev}
           aria-label="Vídeo anterior"
-          className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-full border border-garage-border bg-garage-dark text-garage-muted hover:text-garage-gold hover:border-garage-gold transition-colors flex items-center justify-center"
+          className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-full border border-garage-border bg-garage-dark text-garage-muted hover:text-garage-red hover:border-garage-red transition-colors flex items-center justify-center"
         >
           <svg
             className="w-5 h-5"
@@ -54,7 +54,7 @@ export default function VideoCarousel({ videos }: Props) {
         <button
           onClick={next}
           aria-label="Próximo vídeo"
-          className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-full border border-garage-border bg-garage-dark text-garage-muted hover:text-garage-gold hover:border-garage-gold transition-colors flex items-center justify-center"
+          className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-full border border-garage-border bg-garage-dark text-garage-muted hover:text-garage-red hover:border-garage-red transition-colors flex items-center justify-center"
         >
           <svg
             className="w-5 h-5"

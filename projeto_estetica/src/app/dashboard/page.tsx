@@ -13,6 +13,7 @@ const TABS = [
   { id: 'services', label: 'Serviços' },
   { id: 'videos', label: 'Vídeos' },
   { id: 'reviews', label: 'Depoimentos' },
+  { id: 'faqs', label: 'Perguntas Frequentes' },
 ]
 
 export default function DashboardPage() {
@@ -25,16 +26,19 @@ export default function DashboardPage() {
   const [serviceItems, setServiceItems] = useState<Item[]>([])
   const [videoItems, setVideoItems] = useState<Item[]>([])
   const [reviewItems, setReviewItems] = useState<Item[]>([])
+  const [faqItems, setFaqItems] = useState<Item[]>([])
 
   async function refresh() {
-    const [services, videos, reviews] = await Promise.all([
+    const [services, videos, reviews, faqs] = await Promise.all([
       apiGetItems<Item>('services'),
       apiGetItems<Item>('videos'),
       apiGetItems<Item>('reviews'),
+      apiGetItems<Item>('faqs'),
     ])
     setServiceItems(services)
     setVideoItems(videos)
     setReviewItems(reviews)
+    setFaqItems(faqs)
   }
 
   useEffect(() => {
@@ -69,7 +73,7 @@ export default function DashboardPage() {
       <header className="border-b border-garage-border bg-garage-card">
         <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="text-xl font-bold">
-            Garage <span className="text-garage-gold">765</span>
+            Garage <span className="text-garage-red">765</span>
           </Link>
           <div className="flex items-center gap-4">
             <Link
@@ -109,7 +113,7 @@ export default function DashboardPage() {
               onClick={() => setTab(t.id)}
               className={`px-5 py-2.5 text-sm font-semibold -mb-px border-b-2 transition-colors ${
                 tab === t.id
-                  ? 'border-garage-gold text-garage-gold'
+                  ? 'border-garage-red text-garage-red'
                   : 'border-transparent text-garage-muted hover:text-garage-text'
               }`}
             >
@@ -125,6 +129,17 @@ export default function DashboardPage() {
               { key: 'title', label: 'Título', required: true },
               { key: 'description', label: 'Descrição', type: 'textarea', required: true },
               { key: 'value', label: 'Valor (usado no agendamento)', required: true },
+              {
+                key: 'longDescription',
+                label: 'Descrição detalhada (Saiba mais)',
+                type: 'textarea',
+                optional: true,
+                placeholder: 'Texto completo exibido no modal. Deixe vazio para usar o texto padrão.',
+              },
+              { key: 'duration', label: 'Duração', optional: true, placeholder: 'ex. 2 a 3 horas' },
+              { key: 'idealFor', label: 'Ideal para', optional: true, placeholder: 'ex. Carros novos ou seminovos' },
+              { key: 'features', label: 'Diferenciais (um por linha)', type: 'textarea', optional: true },
+              { key: 'includes', label: 'Áreas / Pacotes (um por linha)', type: 'textarea', optional: true },
             ]}
             items={serviceItems}
             onAdd={(item) => apiCreateItem('services', item).then(refresh)}
@@ -188,9 +203,30 @@ export default function DashboardPage() {
             renderSummary={(item) => (
               <div>
                 <p className="font-semibold truncate">
-                  {String(item.name)} <span className="text-garage-gold">{"★".repeat(Number(item.rating))}</span>
+                  {String(item.name)} <span className="text-garage-red">{"★".repeat(Number(item.rating))}</span>
                 </p>
                 <p className="text-sm text-garage-muted truncate">{String(item.text)}</p>
+              </div>
+            )}
+          />
+        )}
+
+        {tab === 'faqs' && (
+          <ContentManager
+            title="Perguntas Frequentes"
+            fields={[
+              { key: 'question', label: 'Pergunta', required: true },
+              { key: 'answer', label: 'Resposta', type: 'textarea', required: true },
+            ]}
+            items={faqItems}
+            onAdd={(item) => apiCreateItem('faqs', item).then(refresh)}
+            onUpdate={(item) => apiUpdateItem('faqs', String(item.id), item).then(refresh)}
+            onDelete={(id) => apiDeleteItem('faqs', id).then(refresh)}
+            createEmpty={() => ({ id: crypto.randomUUID(), question: '', answer: '' })}
+            renderSummary={(item) => (
+              <div>
+                <p className="font-semibold truncate">{String(item.question)}</p>
+                <p className="text-sm text-garage-muted truncate">{String(item.answer)}</p>
               </div>
             )}
           />

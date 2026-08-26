@@ -33,7 +33,7 @@ export default function PainPoints() {
     <section className="py-20 bg-garage-card">
       <div className="max-w-6xl mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
-          O tempo e o uso diário estão <span className="text-garage-gold">destruindo</span> seu carro?
+          O tempo e o uso diário estão <span className="text-garage-red">destruindo</span> seu carro?
         </h2>
         <p className="text-garage-muted text-center max-w-2xl mx-auto mb-12 text-lg">
           Mesmo com lavagens frequentes, carros sem proteção profissional sofrem desgaste que desvaloriza o veículo e tira o prazer de dirigir.
@@ -43,7 +43,7 @@ export default function PainPoints() {
           {pains.map((pain, i) => (
             <div
               key={i}
-              className="bg-garage-dark p-8 rounded-lg border border-garage-border text-center hover:border-garage-gold transition-colors"
+              className="bg-garage-dark p-8 rounded-lg border border-garage-border text-center hover:border-garage-red transition-colors"
             >
               <div className="flex justify-center mb-5">{pain.icon}</div>
               <h3 className="text-xl font-bold mb-3">{pain.title}</h3>

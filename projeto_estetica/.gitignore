@@ -49,9 +49,8 @@ next-env.d.ts
 
 /src/generated/prisma
 
-current-data.json
-scripts/
-
 .agents/
 .claude/
 .windsurf/
+
+

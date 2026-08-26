@@ -4,6 +4,14 @@ export type Service = {
   description: string
   image: string
   value: string
+  // Optional editable "Saiba mais" modal content (SQL NULL from DB = undefined here)
+  longDescription?: string | null
+  duration?: string | null
+  idealFor?: string | null
+  /** Newline-separated items */
+  features?: string | null
+  /** Newline-separated items */
+  includes?: string | null
 }
 
 export type Video = {
@@ -17,6 +25,12 @@ export type Review = {
   name: string
   rating: number
   text: string
+}
+
+export type Faq = {
+  id: string
+  question: string
+  answer: string
 }
 
 export const INSTAGRAM_URL = process.env.NEXT_PUBLIC_INSTAGRAM_URL || 'https://instagram.com/garage765sp'
@@ -34,6 +48,30 @@ export const instagram = {
 }
 
 export const services: Service[] = [
+  {
+    id: 'lavagem_detalhada',
+    title: 'Lavagem Detalhada',
+    description: 'Limpeza profunda do veículo, por dentro e por fora, com atenção aos detalhes e acabamento.',
+    image: 'https://images.unsplash.com/photo-1608506375591-b90e1f955e4b?auto=format&fit=crop&w=600&q=80',
+    value: 'Lavagem Detalhada',
+  },
+  
+  {
+    id: 'lavagem_manutencao',
+    title: 'Lavagem de Manutenção',
+    description: 'Limpeza regular para manter o veículo limpo e bem cuidado entre as lavagens detalhadas.',
+    image: 'https://plus.unsplash.com/premium_photo-1661501041641-3e731115e687?auto=format&fit=crop&w=600&q=80',
+    value: 'Lavagem de Manutenção',
+  },
+
+  {
+    id: 'volante',
+    title: 'Revestimento de Volante',
+    description: 'Aplicação de revestimento protetor para preservar o volante, aumentar sua durabilidade e manter sua aparência.',
+    image: 'https://images.unsplash.com/photo-1612805144400-88c7821bf36f?auto=format&fit=crop&w=600&q=80',
+    value: 'Revestimento de Volante',
+  },
+
   {
     id: 'vitrificacao',
     title: 'Vitrificação de Pintura',

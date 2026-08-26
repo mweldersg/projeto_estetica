@@ -1,7 +1,10 @@
 'use client'
 
+import { useState, useRef } from 'react'
 import Link from 'next/link'
 import type { Service } from '@/lib/mock-data'
+import { getServiceDetails } from '@/lib/serviceDetails'
+import ServiceModal from './ServiceModal'
 
 interface Props {
   services: Service[]
@@ -9,11 +12,24 @@ interface Props {
 }
 
 export default function Services({ services, onBookService }: Props) {
+  const [activeService, setActiveService] = useState<Service | null>(null)
+  const triggerRef = useRef<HTMLButtonElement | null>(null)
+
+  function openModal(service: Service, btn: HTMLButtonElement | null) {
+    triggerRef.current = btn
+    setActiveService(service)
+  }
+
+  function closeModal() {
+    setActiveService(null)
+    // return focus to trigger
+    setTimeout(() => triggerRef.current?.focus(), 0)
+  }
   return (
     <section id="services" className="py-20 bg-garage-dark">
       <div className="max-w-6xl mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
-          Nossas Soluções <span className="text-garage-gold">Premium</span>
+          Nossas Soluções <span className="text-garage-red">Premium</span>
         </h2>
         <p className="text-garage-muted text-center max-w-2xl mx-auto mb-12 text-lg">
           Técnicas avançadas e produtos de alta qualidade para transformar e proteger seu veículo contra o tempo.
@@ -23,6 +39,7 @@ export default function Services({ services, onBookService }: Props) {
           {services.map((service) => (
             <div
               key={service.id}
+              data-testid={`service-card-${service.id}`}
               className="bg-garage-card rounded-lg overflow-hidden border border-garage-border flex flex-col"
             >
               <div
@@ -30,19 +47,39 @@ export default function Services({ services, onBookService }: Props) {
                 style={{ backgroundImage: `url(${service.image})` }}
               />
               <div className="p-6 flex flex-col flex-1">
-                <h3 className="text-xl font-bold mb-2 text-garage-gold">{service.title}</h3>
+                <h3 className="text-xl font-bold mb-2 text-garage-red">{service.title}</h3>
                 <p className="text-garage-muted mb-5 flex-1">{service.description}</p>
-                <Link
-                  href="#booking"
-                  onClick={() => onBookService(service.value)}
-                  className="block w-full py-3 text-center border border-garage-gold text-garage-gold rounded hover:bg-garage-gold hover:text-black transition-colors text-sm font-semibold"
-                >
-                  Agendar Este Serviço
-                </Link>
+                <div className="flex flex-col gap-2.5 mt-auto">
+                  <button
+                    type="button"
+                    data-testid={`saiba-mais-${service.id}`}
+                    onClick={(e) => openModal(service, e.currentTarget)}
+                    className="w-full py-3 text-center border border-garage-border text-garage-text rounded hover:border-garage-red hover:text-garage-red transition-colors text-sm font-semibold"
+                    aria-label={`Saiba mais sobre ${service.title}`}
+                  >
+                    Saiba mais
+                  </button>
+                  <Link
+                    href="#booking"
+                    onClick={() => onBookService(service.value)}
+                    className="block w-full py-3 text-center border border-garage-red text-garage-red rounded hover:bg-garage-red hover:text-black transition-colors text-sm font-semibold"
+                    data-testid={`agendar-${service.id}`}
+                  >
+                    Agendar Este Serviço
+                  </Link>
+                </div>
               </div>
             </div>
           ))}
         </div>
+
+        <ServiceModal
+          service={activeService}
+          details={activeService ? getServiceDetails(activeService) : null}
+          open={!!activeService}
+          onClose={closeModal}
+          onBook={onBookService}
+        />
       </div>
     </section>
   )

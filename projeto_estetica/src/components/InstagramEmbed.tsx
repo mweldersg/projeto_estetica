@@ -12,7 +12,7 @@ export default function InstagramEmbed({ url }: { url: string }) {
       scrolling="no"
       allowFullScreen
       allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-      sandbox="allow-scripts allow-same-origin allow-presentation allow-popups allow-popups-to-escape-sandbox"
+      sandbox="allow-scripts allow-presentation allow-popups allow-popups-to-escape-sandbox"
       title="Vídeo do Instagram"
       className="w-[320px] max-w-full h-[540px] rounded-2xl border border-garage-border shadow-lg"
     />

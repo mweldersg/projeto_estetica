@@ -13,12 +13,19 @@ model Admin {
 }
 
 model Service {
-  id          String @id @default(cuid())
-  title       String
-  description String
-  image       String
-  value       String
-  order       Int    @default(0)
+  id              String  @id @default(cuid())
+  title           String
+  description     String
+  image           String
+  value           String
+  order           Int     @default(0)
+  // Optional "Saiba mais" modal detail fields (null = fall back to built-in copy)
+  longDescription String?
+  duration        String?
+  idealFor        String?
+  // Newline-separated lists (one item per line)
+  features        String?
+  includes        String?
 }
 
 model Video {
@@ -34,4 +41,21 @@ model Review {
   rating Int
   text   String
   order  Int     @default(0)
+}
+
+model Faq {
+  id       String @id @default(cuid())
+  question String
+  answer   String
+  order    Int    @default(0)
+}
+
+model LoginAttempt {
+  id        String   @id @default(cuid())
+  ip        String
+  phone     String
+  createdAt DateTime @default(now())
+
+  @@index([ip, createdAt])
+  @@index([phone, createdAt])
 }

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import type { Service, Video, Review } from '@/lib/mock-data'
+import type { Service, Video, Review, Faq } from '@/lib/mock-data'
 import Navbar from './Navbar'
 import Hero from './Hero'
 import PainPoints from './PainPoints'
@@ -21,9 +21,10 @@ interface Props {
   services: Service[]
   videos: Video[]
   reviews: Review[]
+  faqs: Faq[]
 }
 
-export default function LandingPage({ services, videos, reviews }: Props) {
+export default function LandingPage({ services, videos, reviews, faqs }: Props) {
   const [selectedService, setSelectedService] = useState('')
 
   return (
@@ -38,17 +39,17 @@ export default function LandingPage({ services, videos, reviews }: Props) {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-16 lg:gap-x-12">
             <div className="flex flex-col items-center">
               <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 leading-tight">
-                Transformações em <span className="text-garage-gold">Vídeo</span>
+                Transformações em <span className="text-garage-red">Vídeo</span>
               </h2>
               <p className="text-garage-muted text-center max-w-2xl mx-auto mb-8 text-lg">
-                Veja o resultado <span className="text-garage-gold">real</span> dos nossos trabalhos em detalhe.
+                Veja o resultado <span className="text-garage-red">real</span> dos nossos trabalhos em detalhe.
               </p>
               <VideoCarousel videos={videos} />
             </div>
             
             <div className="flex flex-col items-center">
               <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 leading-tight">
-                Acompanhe nosso <span className="text-garage-gold">Instagram!</span>
+                Acompanhe nosso <span className="text-garage-red">Instagram!</span>
               </h2>
               <p
                 aria-hidden="true"
@@ -66,7 +67,7 @@ export default function LandingPage({ services, videos, reviews }: Props) {
       <Benefits />
       <Testimonials reviews={reviews} />
       <HowItWorks />
-      <FAQ />
+      <FAQ faqs={faqs} />
       <FinalCTA onBookClick={() => setSelectedService('Avaliação Completa')} />
       <Footer />
       <WhatsAppPopup />

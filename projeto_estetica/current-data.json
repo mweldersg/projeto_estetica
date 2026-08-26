@@ -1,0 +1,168 @@
+{
+  "services": [
+    {
+      "id": "lavagem_detalhada",
+      "title": "Lavagem Detalhada",
+      "description": "Limpeza profunda do veículo, por dentro e por fora, com atenção aos detalhes e acabamento.",
+      "image": "https://images.unsplash.com/photo-1608506375591-b90e1f955e4b?auto=format&fit=crop&w=600&q=80",
+      "value": "Lavagem Detalhada",
+      "order": 0
+    },
+    {
+      "id": "lavagem_manutencao",
+      "title": "Lavagem de Manutenção",
+      "description": "Limpeza regular para manter o veículo limpo e bem cuidado entre as lavagens detalhadas.",
+      "image": "https://plus.unsplash.com/premium_photo-1661501041641-3e731115e687?auto=format&fit=crop&w=600&q=80",
+      "value": "Lavagem de Manutenção",
+      "order": 1
+    },
+    {
+      "id": "volante",
+      "title": "Revestimento de Volante",
+      "description": "Aplicação de revestimento protetor para preservar o volante, aumentar sua durabilidade e manter sua aparência.",
+      "image": "https://images.unsplash.com/photo-1612805144400-88c7821bf36f?auto=format&fit=crop&w=600&q=80",
+      "value": "Revestimento de Volante",
+      "order": 2
+    },
+    {
+      "id": "vitrificacao",
+      "title": "Vitrificação de Pintura",
+      "description": "Cria uma camada de vidro (Revestimento Cerâmico) sobre o verniz. Repele água, sujeira e garante brilho espelhado.",
+      "image": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=600&q=80",
+      "value": "Vitrificação de Pintura",
+      "order": 3
+    },
+    {
+      "id": "ppf",
+      "title": "PPF (Película de Proteção)",
+      "description": "Nível máximo de proteção. Película autorrecuperável que protege contra lascas de pedra, arranhuras e vandalismo.",
+      "image": "https://images.unsplash.com/photo-1669625328455-3870684ac58c?auto=format&fit=crop&w=600&q=80",
+      "value": "PPF (Paint Protection Film)",
+      "order": 4
+    },
+    {
+      "id": "polimento",
+      "title": "Polimento Técnico",
+      "description": "Correção de pintura que remove até 95% das ranhuras, swirls e imperfeições, restaurando a cor original.",
+      "image": "https://plus.unsplash.com/premium_photo-1663013309657-8b3a2a00849e?auto=format&fit=crop&w=600&q=80",
+      "value": "Polimento Técnico",
+      "order": 5
+    },
+    {
+      "id": "higienizacao",
+      "title": "Higienização Interna",
+      "description": "Limpeza profunda de bancos, forro, carpetes e plásticos. Elimina odores, fungos e bactérias completamente.",
+      "image": "https://plus.unsplash.com/premium_photo-1661909961389-7d501737abde?auto=format&fit=crop&w=600&q=80",
+      "value": "Higienização Interna",
+      "order": 6
+    },
+    {
+      "id": "insulfilm",
+      "title": "Aplicação de Insulfilm",
+      "description": "Películas de alto desempenho (Nanocerâmica). Rejeição de calor, proteção UV e privacidade completa.",
+      "image": "https://images.unsplash.com/photo-1690022676526-2762ac826843?auto=format&fit=crop&w=600&q=80",
+      "value": "Aplicação de Insulfilm",
+      "order": 7
+    },
+    {
+      "id": "revestimento",
+      "title": "Revestimento e Micropintura",
+      "description": "Renovação do volante em couro e correção de arranhuras profundas sem repintura da peça inteira.",
+      "image": "https://plus.unsplash.com/premium_photo-1661962438334-a52e4dd85031?auto=format&fit=crop&w=600&q=80",
+      "value": "Revestimento e Micropintura",
+      "order": 8
+    }
+  ],
+  "videos": [
+    {
+      "id": "cmservke0000004i2ec077wgw",
+      "title": "PPF",
+      "instagramUrl": "https://www.instagram.com/p/DPb2P71jfIl/embed/",
+      "order": 0
+    },
+    {
+      "id": "cmserwra5000104i2m45n1mua",
+      "title": "Pelicula",
+      "instagramUrl": "https://www.instagram.com/p/DNMXkm1vuQH/embed/",
+      "order": 0
+    },
+    {
+      "id": "cmserxm21000004l2a0jzpey9",
+      "title": "Polimento",
+      "instagramUrl": "https://www.instagram.com/p/DQrfJWCDfWo/embed/",
+      "order": 0
+    }
+  ],
+  "reviews": [
+    {
+      "id": "r1",
+      "name": "Gabriel Teodoro",
+      "rating": 5,
+      "text": "Foi incrível o serviço feito no meu carro!! Literalmente deixaram ele com a aparência de carro 0. Também foram muito atenciosos e claros durante a explicação do que seria feito.\nMe sinto super satisfeito!! Recomendo muito!",
+      "order": 0
+    },
+    {
+      "id": "r2",
+      "name": "Renan Rafael",
+      "rating": 5,
+      "text": "Depois que comecei a levar meu carro la, nunca mais fui em outro lugar, trabalho de qualidade premium. Recomendo muito",
+      "order": 1
+    },
+    {
+      "id": "r3",
+      "name": "Douglas Rodrigues",
+      "rating": 5,
+      "text": "Ótimo atendimento, meu carro ficou 0km denovo 👏🏽👏🏽👏🏽👏🏽",
+      "order": 2
+    },
+    {
+      "id": "r4",
+      "name": "Thamires Caroline",
+      "rating": 5,
+      "text": "Serviços\nLimpeza geral de veículos, Lavagem completa",
+      "order": 3
+    },
+    {
+      "id": "r5",
+      "name": "Weverton Oliveira",
+      "rating": 5,
+      "text": "Local organizado , com profissionais de boa qualidade\nServiços\nLimpeza geral de veículos",
+      "order": 4
+    },
+    {
+      "id": "r6",
+      "name": "Fernando S",
+      "rating": 5,
+      "text": "Atentimento 100% gostei muito do servic0\nFicou top",
+      "order": 5
+    }
+  ],
+  "faqs": [
+    {
+      "id": "faq-vitrificacao",
+      "question": "Quanto tempo dura a vitrificação de pintura?",
+      "answer": "Dependendo do revestimento cerâmico escolhido e do cuidado na lavagem, a proteção pode durar de 1 a 3 anos.",
+      "order": 0
+    },
+    {
+      "id": "faq-polimento",
+      "question": "O polimento remove arranhuras profundas?",
+      "answer": "O polimento técnico remove arranhuras superficiais no verniz. Arranhuras que atingiram a pintura ou metal requerem micropintura.",
+      "order": 1
+    },
+    {
+      "id": "faq-higienizacao",
+      "question": "Quanto tempo leva a higienização interna?",
+      "answer": "O serviço completo leva de 6 a 8 horas, garantindo limpeza profunda e secagem adequada.",
+      "order": 2
+    },
+    {
+      "id": "faq-pagamento",
+      "question": "Quais formas de pagamento vocês aceitam?",
+      "answer": "Aceitamos PIX, cartões de débito e crédito, com opções de parcelamento para facilitar seu investimento.",
+      "order": 3
+    }
+  ],
+  "exportedAt": "2026-08-04T16:32:12.770Z",
+  "version": "current"
+}

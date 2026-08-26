@@ -56,8 +56,12 @@ test.describe('Landing Page', () => {
   test('clicking a service card preselects it in the booking form', async ({ page }) => {
     await page.goto('/')
     await page.locator('#services').scrollIntoViewIfNeeded()
-    await page.getByRole('link', { name: 'Agendar Este Serviço' }).first().click()
-    await expect(page.locator('#book-service')).toHaveValue('Vitrificação de Pintura')
+    const firstCard = page.locator('[data-testid^="service-card-"]').first()
+    const expectedTitle = await firstCard.locator('h3').textContent()
+    // Map title to select value (for PPF the value differs from title)
+    const expectedValue = expectedTitle?.includes('PPF') ? 'PPF (Paint Protection Film)' : expectedTitle?.trim() ?? ''
+    await firstCard.getByRole('link', { name: 'Agendar Este Serviço' }).click()
+    await expect(page.locator('#book-service')).toHaveValue(expectedValue)
   })
 
   test('whatsapp popup opens with contact message and deep link', async ({ page }) => {
